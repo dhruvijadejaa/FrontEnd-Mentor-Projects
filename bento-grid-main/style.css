@@ -1,0 +1,297 @@
+ @font-face {
+     font-family: 'DM Sans';
+     font-weight: 400 500;
+     src: url('assets/fonts/DMSans-VariableFont_opsz\,wght.ttf');
+ }
+
+ @font-face {
+     font-family: 'DM Sans';
+     font-style: italic;
+     font-weight: 400 500;
+     src: url('assets/fonts/DMSans-Italic-VariableFont_opsz\,wght.ttf');
+ }
+
+ :root {
+     --primary-subdued: hsl(254, 88%, 90%);
+     --primary-base: hsl(256, 67%, 59%);
+     --accent-subdued: hsl(31, 66%, 93%);
+     --accent-base: hsl(39, 100%, 71%);
+     --white: hsl(0, 0%, 100%);
+     --off-white: hsl(0, 0%, 96%);
+     --black: hsl(0, 0%, 7%);
+
+     --fs-reg: 1.75rem;
+     --fs-md: 2.25rem;
+     --fs-lg: 3rem;
+     --fs-xl: 4rem;
+ }
+ 
+ @layer reset {
+
+     /* Box sizing rules */
+     *,
+     *::before,
+     *::after {
+         box-sizing: border-box;
+     }
+
+
+     img {
+         max-width: 100%;
+         display: block;
+     }
+
+     /* Remove default margin in favour of better control in authored CSS */
+     body,
+     h1,
+     h2,
+     h3,
+     h4,
+     p,
+     figure,
+     blockquote,
+     dl,
+     dd {
+         margin: 0;
+     }
+
+     h1,
+     h2,
+     h3,
+     h4,
+     h5,
+     h6 {
+         font-weight: 500;
+     }
+ }
+
+ @layer base {
+     html {
+         font-family: "DM Sans", sans-serif;
+         margin: 5%;
+     }
+
+     h1,
+     h2,
+     h3 {
+         line-height: 1.1;
+         color: var(--heading-color, inherit);
+         font-size: var(--heading-font-size, var(--fs-md));
+
+         span {
+             display: var(--heading-span-display, inline);
+             color: var(--heading-span-foreground, var(--black));
+             font-size: var(--heading-span-font-size, inherit);
+             font-style: var(--heading-span-style, normal);
+              
+             
+     }
+
+     body {
+        margin: 32px;
+    color: var(--black);
+    font-size: var(--fs-reg);
+    background: var(--off-white);
+    
+     }
+ }
+
+ @layer layout {
+     .bento-grid {
+         display: grid;
+         gap: 20px;
+         max-inline-size: 1200px;
+         margin-inline: auto ;
+
+         grid-template-areas: 'one'
+         'two'
+         'three'
+         'four'
+         'five'
+         'six'
+         'seven'
+         'eight';
+
+         @media (width> 960px){
+             grid-template-areas:
+             "seven one one four"
+             "seven two three four"
+             "eight two three four"
+             "eight six five five"
+             ;
+         }
+
+     }
+
+     .bento-grid>* {
+         background-color: var(--bento-card-surface, var(--white));
+         border-radius: var(--bento-card-border-radius, 20px);
+         padding: var(--bento-card-padding, 30px);
+         color: var(--bento-card-foreground, var(--black));
+
+         display: grid;
+         gap: var(--bento-card-gap, 32px);
+
+         align-content: var(--bento-card-vertical-alignment, start);
+         align-items: var(--bento-card-vertical-alignment, start);
+         justify-items: var(--bento-card-horizontal-alignment, start);
+         text-align: var(--bento-card-horizontal-alignment, start);
+
+         overflow: clip;
+
+
+
+     }
+
+     .bento-grid img{
+        max-width: var(--bento-card-image-width, 100%);
+        width: var(--bento-card-image-width, 100%);
+        order: var(--bento-card-image-order);
+     }
+
+     .bento-grid> :nth-child(1) {
+         --bento-card-surface: var(--primary-base);
+         --bento-card-foreground: var(--white);
+         --heading-font-size: var(--fs-xl);
+         --heading-span-foreground: var(--accent-base);
+         
+
+         --bento-card-padding: 40px;
+         --bento-card-gap: 16px;
+         
+         --bento-card-horizontal-alignment: center;
+
+         --bento-card-image-width: 70%;
+
+         grid-area: one;
+
+         .italic-word {
+  font-style: oblique;
+}
+
+
+
+     }
+
+     .bento-grid> :nth-child(2) {
+        --bento-card-image-order: -1;
+        --bento-card-surface: var(--accent-subdued);
+
+        grid-area: two;
+
+         @media (width > 960px){
+            --bento-card-image-width: 150%;
+        }
+
+        /* box shadow light */
+        >img{
+            filter: drop-shadow(0 0 1rem hsl(0 0% 0% / .25));
+            border-radius: 100vw;
+        }
+     }
+
+     /* .bento-grid> :nth-child(3){
+        --bento-card-surface: var(--accent-base);
+
+        grid-area: three;
+
+        >img{
+            margin-bottom:  -55px ;
+            --bento-card-image-width: 65%;
+        }
+
+         @media (width > 960px){
+            --bento-card-image-width: 100%;
+            margin-bottom: -50px;  ;
+        }
+     } */
+
+       .bento-grid> :nth-child(3) {
+    --bento-card-surface: var(--accent-base);
+
+    grid-area: three;
+
+
+    >img {
+      --bento-card-image-width: 75%;
+
+      margin-bottom: -55px;
+
+      @media (width > 960px) {
+        --bento-card-image-width: 100%;
+        margin-bottom: -125px;
+      }
+    }
+  }
+
+     .bento-grid> :nth-child(4){
+         --bento-card-surface: var(--primary-subdued); 
+         --bento-card-horizontal-alignment: center;
+
+         grid-area: four;
+     }
+
+     .bento-grid> :nth-child(5){
+        --bento-card-image-order: -1;
+        --bento-card-image-width: 70%;
+        --bento-card-surface: var(--primary-base);
+        --bento-card-foreground: var(--white);
+        --bento-card-horizontal-alignment: center;
+
+        grid-area: five;
+
+        @media (width > 960px){
+            grid-template-columns: 1fr 1fr;
+            
+            --bento-card-image-width: 100%;
+            --bento-card-horizontal-alignment: start;
+            --bento-card-gap: 16px;
+            --bento-card-vertical-alignment: center;
+
+        }
+     }
+
+     .bento-grid> :nth-child(6){
+        --heading-font-size: var(--fs-xl);
+        --heading-span-display: block;
+        --heading-span-font-size: var(--fs-reg);
+        --bento-card-image-width: 60%;
+
+        grid-area: six;
+     }
+
+     .bento-grid> :nth-child(7){
+        --bento-card-surface: var(--accent-subdued);
+        --heading-font-size: var(--fs-xl);
+        --bento-card-horizontal-alignment: center;
+        --heading-span-foreground: var(--primary-base);
+        --bento-card-image-width: 60%;
+        --heading-span-style: italic;
+
+        grid-area: seven;
+
+        @media (width > 960px){
+            --bento-card-vertical-alignment: center;
+            --bento-card-image-width: 100%;
+        }
+     }
+
+      .bento-grid> :nth-child(8){
+        --bento-card-surface: var(--accent-base);
+        --heading-font-size: var(--fs-xl);
+        --bento-card-horizontal-alignment: left;
+        --bento-card-image-width: 50%;
+
+        grid-area: eight;
+        
+     }
+
+
+ }
+
+ @layer utilities {
+     .visually-first {
+         order: -1;
+     }
+ } 
+}
